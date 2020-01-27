@@ -1,0 +1,14 @@
+﻿Name:    Virat Mishra
+Roll no: 2019201033
+
+->Created a bash script to compile and build.
+
+->Slight adjustments to indentation for better code readability.
+
+->Included a function to print values of all command line arguments.
+
+->A new instance_validator method in ArgumentMarshaler classes of all supported types.
+
+->In place of precoded schema, custom schema will be fed as input preceeding the actual command line arguments.
+
+->Added unit test cases.

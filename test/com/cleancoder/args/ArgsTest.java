@@ -248,6 +248,17 @@ public class ArgsTest {
 	  Args args = new Args("x#,x#", new String[]{"-x", "10", "-x", "20"});
 	  assertEquals(20, args.getInt('x'));
   }
+  
+  @Test
+  public void testStringArrayWithMultipleValues() throws Exception {
+	    Args args = new Args("x[*]", new String[]{"-xxxx", "alpha", "6599", "-0.2565", "true"});
+	    String[] result = args.getStringArray('x');
+	    assertEquals(4, result.length);
+	    assertEquals("alpha", result[0]);
+	    assertEquals("6599", result[1]);
+	    assertEquals("-0.2565", result[2]);
+	    assertEquals("true", result[3]);
+	  }
 
 }
 
