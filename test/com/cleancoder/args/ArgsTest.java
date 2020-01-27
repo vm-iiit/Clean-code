@@ -255,7 +255,7 @@ public class ArgsTest {
 	    String[] result = args.getStringArray('x');
 	    assertEquals(4, result.length);
 	    assertEquals("alpha", result[0]);
-	    assertEquals("6599", result[1]);
+	    assertNotEquals(6599, result[1]);
 	    assertEquals("-0.2565", result[2]);
 	    assertEquals("true", result[3]);
 	  }

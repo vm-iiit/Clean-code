@@ -1,5 +1,7 @@
-# Instructions For The Tutorial.
-    Please read the instructions carefully and try to complete them during the tutorial.
+Name:    Virat Mishra
+Roll no: 2019201033
+
+Instructions for execution:
 
 ### Install/Update Java
       * sudo add-apt-repository ppa:openjdk-r/ppa
@@ -11,10 +13,38 @@
       * Clone this repo 
       * install ant by running 'sudo apt-get install ant'
       * then go to the folder where you have cloned this repo
-      * run 'ant compile'
-      * run 'ant jar'
+      * run ./compile.sh
       * run 'java -cp build/jar/args.jar com.cleancoder.args.ArgsMain'
 ### For the tests
         * Run the command given below from the root folder of this repo
-        * 'java -cp "lib/junit-4.13.jar:lib/hamcrest-core-1.3.jar:build/jar/args.jar" ./test/com/cleancoder/args/ArgsTest.java testCreateWithNoSchemaOrArguments'
+        * ./runTests.sh
+
     
+This is the java version of the Args program described in: http://butunclebob.com/ArticleS.UncleBob.CleanCodeArgs
+
+Reference repo : https://github.com/unclebob/javaargs
+
+Schema:
+ - char    - Boolean arg.
+ - char*   - String arg.
+ - char#   - Integer arg.
+ - char##  - double arg.
+ - char[*] - one element of a string array.
+
+Example schema: (f,s*,n#,a##,p[*])
+Coresponding command line: "f,s*,n#,a##,p[*] -f -s Bob -n 1 -a 3.2 -p e1 -p e2 -p e3"
+
+
+  Changelog:
+
+->Created a bash script to compile and build.
+
+->Slight adjustments to indentation for better code readability.
+
+->Included a function to print values of all command line arguments.
+
+->A new instance_validator method in ArgumentMarshaler classes of all supported types.
+
+->In place of precoded schema, custom schema will be fed as input preceeding the actual command line arguments.
+
+->Added unit test cases.
