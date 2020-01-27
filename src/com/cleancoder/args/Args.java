@@ -81,35 +81,35 @@ public class Args {
     }
   }
 
-  private boolean has(char arg) {
+  public boolean has(char arg) {
     return argsFound.contains(arg);
   }
 
-  private int nextArgument() {
+  public int nextArgument() {
     return currentArgument.nextIndex();
   }
 
-  private boolean getBoolean(char arg) {
+  public boolean getBoolean(char arg) {
     return BooleanArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  private String getString(char arg) {
+  public String getString(char arg) {
     return StringArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  private int getInt(char arg) {
+  public int getInt(char arg) {
     return IntegerArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  private double getDouble(char arg) {
+  public double getDouble(char arg) {
     return DoubleArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  private String[] getStringArray(char arg) {
+  public String[] getStringArray(char arg) {
     return StringArrayArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  private Map<String, String> getMap(char arg) {
+  public Map<String, String> getMap(char arg) {
     return MapArgumentMarshaler.getValue(marshalers.get(arg));
   }
 

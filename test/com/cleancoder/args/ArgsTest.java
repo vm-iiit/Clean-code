@@ -242,6 +242,12 @@ public class ArgsTest {
     assertFalse(args.getBoolean('y'));
     assertEquals(1, args.nextArgument());
   }
+  
+  @Test
+  public void testIntegerOverwrite() throws Exception {
+	  Args args = new Args("x#,x#", new String[]{"-x", "10", "-x", "20"});
+	  assertEquals(20, args.getInt('x'));
+  }
 
 }
 
