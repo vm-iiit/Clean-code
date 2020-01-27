@@ -12,7 +12,6 @@ public class Args {
   public Args(String schema, String[] args) throws ArgsException {
     marshalers = new HashMap<Character, ArgumentMarshaler>();
     argsFound = new HashSet<Character>();
-
     parseSchema(schema);
     parseArgumentStrings(Arrays.asList(args));
   }
@@ -82,35 +81,59 @@ public class Args {
     }
   }
 
-  public boolean has(char arg) {
+  private boolean has(char arg) {
     return argsFound.contains(arg);
   }
 
-  public int nextArgument() {
+  private int nextArgument() {
     return currentArgument.nextIndex();
   }
 
-  public boolean getBoolean(char arg) {
+  private boolean getBoolean(char arg) {
     return BooleanArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  public String getString(char arg) {
+  private String getString(char arg) {
     return StringArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  public int getInt(char arg) {
+  private int getInt(char arg) {
     return IntegerArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  public double getDouble(char arg) {
+  private double getDouble(char arg) {
     return DoubleArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  public String[] getStringArray(char arg) {
+  private String[] getStringArray(char arg) {
     return StringArrayArgumentMarshaler.getValue(marshalers.get(arg));
   }
 
-  public Map<String, String> getMap(char arg) {
+  private Map<String, String> getMap(char arg) {
     return MapArgumentMarshaler.getValue(marshalers.get(arg));
+  }
+
+  private void printStringArray(String[] argArray){
+    for (String element: argArray)
+      System.out.print(element+" ");
+    System.out.print("\n");
+  }
+
+  public void printArguments(){
+    Iterator<Map.Entry<Character, ArgumentMarshaler>> itr = marshalers.entrySet().iterator();
+    while(itr.hasNext())
+    {
+      Map.Entry<Character, ArgumentMarshaler> entry = itr.next();
+      if (entry.getValue() instanceof IntegerArgumentMarshaler)
+        System.out.println("Integer argument "+getInt(entry.getKey()));
+      else if (entry.getValue() instanceof BooleanArgumentMarshaler)
+        System.out.println("Boolean argument "+getBoolean(entry.getKey()));
+      else if (entry.getValue() instanceof DoubleArgumentMarshaler)
+        System.out.println("Double argument "+getDouble(entry.getKey()));
+      else if (entry.getValue() instanceof StringArgumentMarshaler)
+        System.out.println("String argument "+getString(entry.getKey()));
+      else if (entry.getValue() instanceof StringArrayArgumentMarshaler)
+        printStringArray(getStringArray(entry.getKey()));
+    }
   }
 }

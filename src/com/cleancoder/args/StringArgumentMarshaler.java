@@ -16,8 +16,15 @@ public class StringArgumentMarshaler implements ArgumentMarshaler {
     }
   }
 
+  private static boolean instance_validator(ArgumentMarshaler am){
+  	if (am != null && am instanceof StringArgumentMarshaler)
+  		return true;
+  	else
+  		return false;
+  }
+
   public static String getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof StringArgumentMarshaler)
+    if (instance_validator(am))
       return ((StringArgumentMarshaler) am).stringValue;
     else
       return "";

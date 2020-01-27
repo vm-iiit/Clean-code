@@ -1,24 +1,15 @@
 package com.cleancoder.args;
+import java.util.*;
 
 public class ArgsMain {
   public static void main(String[] args) {
+    String schemaTemplate = args[0];
+    String[] actualArgs = Arrays.copyOfRange(args, 1, args.length);
     try {
-      Args arg = new Args("a,b#,c*,e##", args);
-      boolean logging = arg.getBoolean('a');
-      int port = arg.getInt('b');
-      String directory = arg.getString('c');
-      // String[] s_array = arg.getStringArray('d');
-      double d_int = arg.getDouble('e');
-      executeApplication(logging, port, directory, d_int);
+      Args arg = new Args(schemaTemplate, actualArgs);
+      arg.printArguments();
     } catch (ArgsException e) {
       System.out.printf("Argument error: %s\n", e.errorMessage());
     }
-  }
-
-  private static void executeApplication(boolean logging, 
-  										 int port, 
-  										 String directory,
-  										 double d_int) {
-    System.out.printf("logging is %s, port:%d, directory:%s float:%f\n",logging, port, directory, d_int);
   }
 }

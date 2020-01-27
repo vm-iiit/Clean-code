@@ -15,8 +15,15 @@ public class StringArrayArgumentMarshaler implements ArgumentMarshaler {
     }
   }
 
+  private static boolean instance_validator(ArgumentMarshaler am){
+  	if (am != null && am instanceof StringArrayArgumentMarshaler)
+  		return true;
+  	else
+  		return false;
+  }
+
   public static String[] getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof StringArrayArgumentMarshaler)
+    if (instance_validator(am))
       return ((StringArrayArgumentMarshaler) am).strings.toArray(new String[0]);
     else
       return new String[0];

@@ -19,8 +19,15 @@ public class DoubleArgumentMarshaler implements ArgumentMarshaler {
     }
   }
 
+  private static boolean instance_validator(ArgumentMarshaler am){
+  	if (am != null && am instanceof DoubleArgumentMarshaler)
+  		return true;
+  	else
+  		return false;
+  }
+
   public static double getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof DoubleArgumentMarshaler)
+    if (instance_validator(am))
       return ((DoubleArgumentMarshaler) am).doubleValue;
     else
       return 0.0;

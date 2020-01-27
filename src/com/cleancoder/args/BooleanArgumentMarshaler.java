@@ -9,8 +9,15 @@ public class BooleanArgumentMarshaler implements ArgumentMarshaler {
     booleanValue = true;
   }
 
+  private static boolean instance_validator(ArgumentMarshaler am){
+  	if (am != null && am instanceof BooleanArgumentMarshaler)
+  		return true;
+  	else
+  		return false;
+  }
+
   public static boolean getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof BooleanArgumentMarshaler)
+    if (instance_validator(am))
       return ((BooleanArgumentMarshaler) am).booleanValue;
     else
       return false;

@@ -19,8 +19,15 @@ public class IntegerArgumentMarshaler implements ArgumentMarshaler {
     }
   }
 
+  private static boolean instance_validator(ArgumentMarshaler am){
+  	if (am != null && am instanceof IntegerArgumentMarshaler)
+  		return true;
+  	else
+  		return false;
+  }
+
   public static int getValue(ArgumentMarshaler am) {
-    if (am != null && am instanceof IntegerArgumentMarshaler)
+    if (instance_validator(am))
       return ((IntegerArgumentMarshaler) am).intValue;
     else
       return 0;
